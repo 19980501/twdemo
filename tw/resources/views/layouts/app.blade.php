@@ -45,104 +45,107 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                @endif
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            @if (Route::has('register'))
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @endif
+                        </li>
                         @else
-                            <li class="nav-item" style="display:flex; justify-content: center;align-items: center;">
+                        <li class="nav-item" style="display:flex; justify-content: center;align-items: center;">
 
-                                <a class="navbar-brand" href="{{ route('user_list') }}" style="font-size:13px">
+                            <a class="navbar-brand" href="{{ route('user_list') }}" style="font-size:13px">
                                 {{ __('ユーザ一覧') }}
-                                 
-                                    
 
 
 
 
 
-                             <!-- {{ config('app.name', 'Laravel') }} -->
-                                 </a>
 
 
-                               
-                            </li>
+                                <!-- {{ config('app.name', 'Laravel') }} -->
+                            </a>
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                    <!-- <span class="caret"></span> -->
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                        </li>
 
-                            <li class="nav-item">
-                                <a href="#inline" class="inline btn btn-primary">ツイート</a>
-                                <?php //{{Html::link('#inline', __('ツイート'), ['class' => "inline btn btn-primary"])}} ?>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                                <!-- <span class="caret"></span> -->
+                            </a>
 
-                            <!-- <a href="#inline" class="inline">Show</a> -->
-                            <div id="inline" style="display:none;" >
-                                <h4>ツイートする</h4>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                                
-                                <form method="POST" action="/tweet" accept-charset="UTF-8" id="formTweet" enctype="multipart/form-data">
-                                
-                                    
-                                    @csrf
-                                    <textarea name="tweet" placeholder="今なにしてる？" rows="4" cols="50" class="form-control"></textarea>
-                                    <button id="btnTweet" type="button" class="btn btn-primary" style="margin-top:10px;float:right;margin-bottom:10px">
-                                        {{ __('ツイート') }}
-                                    </button>
-                                </form>
-                                <?php //{!! Form::close() !!} ?>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
 
-                        @endguest
-                    </ul>
-                </div>
+                    <li class="nav-item">
+                        <a href="#inline" class="inline btn btn-primary">ツイート</a>
+                        <?php //{{Html::link('#inline', __('ツイート'), ['class' => "inline btn btn-primary"])}} ?>
+                    </li>
+
+                    <!-- <a href="#inline" class="inline">Show</a> -->
+                    <div id="inline" style="display:none;" >
+                        <h4>ツイートする</h4>
+
+
+                        <form method="POST" action="/tweet" accept-charset="UTF-8" id="formTweet" enctype="multipart/form-data">
+
+
+                            @csrf
+                            <textarea name="tweet" placeholder="今なにしてる？" rows="4" cols="50" class="form-control"></textarea>
+                            <button id="btnTweet" type="button" class="btn btn-primary" style="margin-top:10px;float:right;margin-bottom:10px">
+                                {{ __('ツイート') }}
+                            </button>
+                        </form>
+
+                        
+                        
+                        <?php //{!! Form::close() !!} ?>
+                    </div>
+
+                    @endguest
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- フラッシュ・メッセージ -->
+    <!-- フラッシュ・メッセージ -->
 
-        @if(Session::has('message'))
-          <div class="container mt-2">
-              <div class="alert alert-success">
-                  {{ session('message') }}
-              </div>
-          </div>
-        @endif
+    @if(Session::has('message'))
+    <div class="container mt-2">
+      <div class="alert alert-success">
+          {{ session('message') }}
+      </div>
+  </div>
+  @endif
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+  <main class="py-4">
+    @yield('content')
+</main>
+</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- Scripts（Jquery） -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><!-- Scripts（bootstrapのjavascript） -->
-    <script src="{{ asset('js/modaal.min.js') }}" defer></script>
-    <script>
-        $(function(){
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- Scripts（Jquery） -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><!-- Scripts（bootstrapのjavascript） -->
+<script src="{{ asset('js/modaal.min.js') }}" defer></script>
+<script>
+    $(function(){
 
-            $('.inline').modaal({
-                width: 600,
-                hide_close: true,
+        $('.inline').modaal({
+            width: 600,
+            hide_close: true,
             	// type: 'ajax',	// コンテンツのタイプを指定
             	animation_speed: '500', 	// アニメーションのスピードをミリ秒単位で指定
             	// background: '#fff',	// 背景の色を白に変更
@@ -152,11 +155,11 @@
             	loading_content: 'Now Loading, Please Wait.'	// 読み込み時のテキスト表示
             });
 
-            $("#btnTweet").click(function() {
-                $("#formTweet").submit();
-            });
+        $("#btnTweet").click(function() {
+            $("#formTweet").submit();
         });
-    </script>
+    });
+</script>
 
 
 </body>

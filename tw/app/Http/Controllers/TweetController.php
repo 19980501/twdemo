@@ -31,7 +31,20 @@ class TweetController extends Controller
         $tweets->save();
         return redirect("/home");
     }
+
+
     
+    public function destroy($id){
+
+        $tweet = Tweet::findOrFail($id);
+        $tweet->delete();
+
+
+        return redirect('/home')->with('message', '削除しました。');
+    }
+
+
+
     
 
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Tweet;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -26,6 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {   
+
+        // //イマログインしているユーザーが今まで何こツイートしてるか
+        // $my_user = User::find(Auth::id());
+        // $count = count($my_user->tweets);
+        // dd($count);
+
 
         $follows = Follow::where("user_id","=",Auth::id())->get();
 

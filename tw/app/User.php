@@ -8,6 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+         public function tweets(){
+             return $this->hasMany('App\Tweet','user_id','id');
+
+
+
+
+        }
     use Notifiable;
 
     /**
