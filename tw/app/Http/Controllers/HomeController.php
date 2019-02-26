@@ -7,6 +7,7 @@ use App\Tweet;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+
 class HomeController extends Controller
 {
     /**

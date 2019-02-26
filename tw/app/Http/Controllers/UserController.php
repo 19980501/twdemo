@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Follow;
+use Illuminate\Database\Seeder;
 
 class UserController extends Controller
 {

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsToLikesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class AddColumnsToLikesTable extends Migration
      * @return void
      */
     public function up()
-
-
-
-
     {
-        Schema::table('likes', function (Blueprint $table) {
-            $table->integer('likes_count')->default(0);
-        });
+        Schema::create('messages', function (Blueprint $table) {
+            $table->increments('id');
+        $table->text('body'); // メッセージ本文
+        $table->timestamps();
+    });
     }
 
     /**
@@ -29,8 +27,6 @@ class AddColumnsToLikesTable extends Migration
      */
     public function down()
     {
-        Schema::table('likes', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('messages');
     }
 }
