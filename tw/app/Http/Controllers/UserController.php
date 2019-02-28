@@ -12,7 +12,7 @@ class UserController extends Controller
 {
 
 
-    
+
 
     public function index(){
 
@@ -51,6 +51,20 @@ class UserController extends Controller
         
         $follow->save();
         return redirect("/users");
+    }
+
+
+    public function unfollow(Request $request)
+    
+    { 
+       
+        $unfollowid = Follow::where('follow_id', $request->id)
+        ->where('user_id',Auth::id());
+
+
+        $unfollowid->delete();
+
+        return redirect('/users');
     }
 
 }

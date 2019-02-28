@@ -10,13 +10,13 @@ class MessagesTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {for($i = 1 ; $i <= 10 ; $i++) {
+    {
+        for($i = 1 ; $i <= 10 ; $i++) {
 
-        \App\Message::create([
-            'body' => $i .'番目のテキスト'
-        ]);
+            \App\Message::create([
+                'body' => $i .'番目のテキスト'
+            ]);
 
-    }
-        //
+        }
     }
 }

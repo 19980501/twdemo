@@ -6,8 +6,17 @@
   cursor: pointer;
   background-size: 2900%;
 }
-.heart:hover {
+/*.heart:hover {
   background-position: -1120px 0;
   -webkit-transition: background 1s steps(28);
   transition: background 1s steps(28);
+}*/
+
+.heartkieru {
+	width: 40px;
+  height: 40px;
+  background: url(../heartkieru.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  background-size: cover;
 }

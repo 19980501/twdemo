@@ -24,6 +24,7 @@ Route::post('/tweet', 'TweetController@store')->name('home');
 Route::get('/users', 'UserController@index')->name('user_list');
 
 Route::post('/users/follow/{follow_id}', 'UserController@follow');
+Route::post('/users/unfollow/{id}', 'UserController@unfollow');
 //Route::post('/tweet/{$id}', 'TweetController@destroy');
 Route::delete('/tweet/destroy/{id}','TweetController@destroy');
 
@@ -32,6 +33,10 @@ Route::get('/chat', 'ChatController@index');
 
 Route::get('ajax/chat', 'Ajax\ChatController@index'); // メッセージ一覧を取得
 Route::post('ajax/chat', 'Ajax\ChatController@create'); // チャット登録
+
+
+Route::get('/like', 'LikeController@like');
+Route::get('/like/release', 'LikeController@release')->name('deletelike');
 
 
 

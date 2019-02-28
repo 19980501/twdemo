@@ -41,16 +41,33 @@ class HomeController extends Controller
         foreach ($follows as $follow) {
             $follow = $follow->follow_id; 
             $followIds[] = $follow;
+
+        }
+        $followIds[] = Auth::id();
+
+
+        $tweet = Tweet::wherein("user_id",$followIds)->orderBy("created_at","desc")->get();
+
         
+
+
+
+      
+        $user_id = User::find(Auth::id());
+
+
+        $favtweet = [];
+        foreach ($user_id->likes as $value) {
+            $favtweet[$value->tweet_id] = '1';
+            # code...
+        }
+
+        
+        return view('home',
+            [
+                'tweets'=>$tweet,
+                'favtweet' => $favtweet,
+            ]);
     }
-            $followIds[] = Auth::id();
-
-
-    $tweet = Tweet::wherein("user_id",$followIds)->orderBy("created_at","desc")->get();
-
-
-
-    return view('home',['tweets'=>$tweet]);
-}
 
 }

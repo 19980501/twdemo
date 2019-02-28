@@ -15,17 +15,34 @@
           <div style="display:flex; justify-content: left;align-items: center;">
             <div style="float:left">
 
+
              {{ $tweet->getData() }} / {{ $tweet->created_at }}
            </div>
-           <div style="float:left" class="heart"></div>
            
+           
+           @if (!isset( $favtweet[ $tweet->id] ))
+           <a href="{{ action('LikeController@like', ['id' => $tweet->id]) }}" style="float:left" class="heart"></a>
+           @csrf
+           @else
+           <a href="{{ action('LikeController@release', ['id' => $tweet->id]) }}" style="float:left" class="heartkieru"></a>
+           <!-- <a href="{{ action('LikeController@release', ['id' => $tweet->id]) }}" style="float:left" class="heart"></a> -->
+           @endif
+
+
+
+           @if($tweet->user_id == Auth::id())
+
            <form action="{{ action('TweetController@destroy', $tweet->id) }}" id="form_{{ $tweet->id }}" method="post">
             {{ csrf_field() }}
             {{ method_field('delete') }}
             <a href="#" data-id="{{ $tweet->id }}" class="btn btn-danger btn-sm" onclick="deletePost(this);">削除</a>
           </form>
+          @else
+          @endif
+          
         </div>
       </div>
+
 
       <hr style="margin-top:0px; margin-bottom:0px">
 
