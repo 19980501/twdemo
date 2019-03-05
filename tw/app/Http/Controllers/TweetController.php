@@ -29,7 +29,11 @@ class TweetController extends Controller
         $tweets->user_id = Auth::id();
         $tweets->tweet = $req->tweet;
         $tweets->save();
+
+
         return redirect("/home");
+
+
     }
 
 

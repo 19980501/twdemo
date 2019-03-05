@@ -47,18 +47,22 @@ class HomeController extends Controller
 
 
         $tweet = Tweet::wherein("user_id",$followIds)->orderBy("created_at","desc")->get();
+        $tweet = Tweet::latest()->paginate(5);
 
-        
-
-
-
-      
+    
         $user_id = User::find(Auth::id());
+
+
+
+
 
 
         $favtweet = [];
         foreach ($user_id->likes as $value) {
-            $favtweet[$value->tweet_id] = '1';
+            // $favtweet[$value->tweet_id] = '1';
+
+            $favtweet[] = $value->tweet_id;
+
             # code...
         }
 

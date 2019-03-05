@@ -17,8 +17,6 @@ class LikeController extends Controller
         $like->user_id = Auth::user()->id;
         $like->tweet_id = $request->id;
 
-        $tweet = Tweet::find($request->id);
-        $user = User::find($tweet->user_id);
 
         $like->save();
 

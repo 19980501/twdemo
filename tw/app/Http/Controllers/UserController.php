@@ -29,6 +29,7 @@ class UserController extends Controller
         
 
         $users = User::where("id","!=",Auth::id())->get();
+        $users = User::paginate(5);
 
         return view('user.list',["users"=>$users,"followIds"=>$followIds]);
     }
